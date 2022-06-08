@@ -4,6 +4,7 @@
       <template v-for="(camera, index) in cameras">
         <camera-marker
           :number="camera.number"
+          :direction="camera.direction"
           :key="index"
           :style="{ top: camera.location.top, left: camera.location.left }"
           class="marker"

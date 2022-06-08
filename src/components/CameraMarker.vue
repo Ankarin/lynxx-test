@@ -1,22 +1,48 @@
 <template>
-  <div @click="setSelectedCamera(number)" class="cameraMarker">
-    <p>{{ number }}</p>
+  <div>
+    <img
+      v-if="displayDirection || selectedCamera == number"
+      class="directionImg"
+      :style="{ top: direction.top, left: direction.left }"
+      height="100px"
+      :src="require(`@/assets/direction${number}.png`)"
+    />
+    <div
+      @mouseover="displayDirection = true"
+      @mouseleave="displayDirection = false"
+      @click="setSelectedCamera(number)"
+      class="cameraMarker"
+    >
+      <p>{{ number }}</p>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapMutations, mapState } from "vuex";
 export default {
-  props: ["number"],
+  props: ["number", "direction"],
   name: "CameraMarker",
+  data() {
+    return {
+      displayDirection: false,
+    };
+  },
   methods: {
     ...mapMutations(["setSelectedCamera"]),
+  },
+  computed: {
+    ...mapState(["selectedCamera"]),
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.directionImg {
+  position: absolute;
+}
 .cameraMarker {
+  z-index: 2;
   cursor: pointer;
   position: relative;
   border-radius: 50%;
