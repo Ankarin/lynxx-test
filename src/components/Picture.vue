@@ -1,6 +1,10 @@
 <template>
   <div>
-    <img height="150px" :src="require(`@/assets/img${selectedCamera}.jpeg`)" />
+    <img
+      v-if="selectedCamera != 0"
+      height="150px"
+      :src="require(`@/assets/img${selectedCamera}.jpeg`)"
+    />
   </div>
 </template>
 

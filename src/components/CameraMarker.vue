@@ -1,12 +1,6 @@
 <template>
   <div @click="setSelectedCamera(number)" class="cameraMarker">
-    <hr
-      align="center"
-      style="position: absolute"
-      width="200"
-      size="2"
-      color="#ff0000"
-    />
+    <div class="direction"></div>
     <p>{{ number }}</p>
   </div>
 </template>
@@ -23,6 +17,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.direction {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 40px solid transparent;
+  border-right: 40px solid transparent;
+  border-bottom: 80px solid lightblue;
+  transform: rotate(-45deg);
+}
 .cameraMarker {
   cursor: pointer;
   position: relative;
